@@ -4,7 +4,7 @@ import { Home, Login } from './components'
 
 const App = () => {
   return (
-    <div className='w-screen h-screen bg-primary flex justify-center items-center'>
+    <div className='h-auto min-w-[680px] bg-primary flex justify-center items-center'>
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/*" element={<Home />}/>
