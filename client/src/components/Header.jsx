@@ -9,7 +9,7 @@ const Header = () => {
         <img src ={Logo} alt ="logo" className='w-16'/>
       </NavLink>
       <ul className="flex items-center justify-center ml-7">
-          <li className='mx-5 text-lg'><NavLink to = {"/home"}>Home</NavLink></li>
+          <li className='mx-5 text-lg'><NavLink to = {"/Dashboard/Home"}>Dashboard</NavLink></li>
           <li className='mx-5 text-lg'><NavLink to = {"/Music"}>Musics</NavLink></li>
           <li className='mx-5 text-lg'><NavLink to = {"/Premium"}>Premium</NavLink></li>
           <li className='mx-5 text-lg'><NavLink to = {"/Contact"}>Contact Us</NavLink></li>
