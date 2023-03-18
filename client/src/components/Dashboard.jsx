@@ -6,6 +6,7 @@ import DashboardAlbums from "./DashboardAlbums";
 import DashboardArtists from "./DashboardArtists";
 import DashboardSongs from "./DashboardSongs";
 import DashboardHome from './DashboardHome';
+import DashboardNewSong from './DashboardNewSong';
 
 
 const Dashboard = () => {
@@ -26,7 +27,7 @@ const Dashboard = () => {
           <Route path="/songs" element={<DashboardSongs />}/>
           <Route path="/artists" element={<DashboardArtists/>}/>
           <Route path="/albums" element={<DashboardAlbums />}/>
-          <Route path="/newSong" element={<DashboardHome />}/>
+          <Route path="/newSong" element={<DashboardNewSong />}/>
 
         </Routes>
       </div>

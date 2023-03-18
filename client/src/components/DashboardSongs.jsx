@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom"
 import {useStateValue} from "../context/StateProvider";
 import { getAllSongs } from '../api';
 import {actionType} from "../context/reducer"
+import { SongCard } from '.';
 
 
 const DashboardSongs = () => {
@@ -22,8 +23,8 @@ const DashboardSongs = () => {
   }, [allSongs, dispatch]);
   return (
     <div className='w-full p-4 flex items-center justify-center flex-col'>
-      <div className='w-full flex justify-center items-center gap-20'>
-        <NavLink to={"/dashboard/newSong"} className="flex items-center justify-center px-4 py-3 border rounded-md border-gray-300 hover:border-gray-500 hover:shaodw-md cursor-pointer">
+      <div className='w-full flex justify-center items-center gap-24'>
+        <NavLink to={"/dashboard/newSong"} className="flex items-center px-4 py-3 border rounded-md border-gray-300 hover:border-gray-500 hover:shaodw-md cursor-pointer">
           <p>+</p>
         </NavLink>
 
@@ -40,16 +41,30 @@ const DashboardSongs = () => {
       <p>test</p>
       </div>
 
-      <div classname="relative w-full my-4 p-4 border border-gray-300 rounded-md">
-        <div className='absolute top-4 left-4'>
-          <p>
-            <span>Count</span>
+      <div classname="relative w-full my-4 p-4 py-12 border border-gray-300 rounded-md">
+        <div className='abosolute top-4 left-4'>
+          <p className='text-xl font-bold'>
+            <span className='text-sm font-semibold text-textColor'>
+              Count :{" "}
+            </span>
+            {allSongs?.length}
 
           </p>
         </div>
+          <SongContainer data={allSongs} />
 
       </div> 
     </div>
-  )
+  );
+};
+
+export const SongContainer = ({data}) => {
+  return (
+    <div className="w-full flex flex-wrap gap-3 items-center justify-evenly">
+      {data && data.map((song, i ) => (
+        <SongCard key={song._id} data={song} index={i}/>
+      ))}
+    </div>
+  );
 };
 export default DashboardSongs

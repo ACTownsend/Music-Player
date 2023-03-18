@@ -46,10 +46,10 @@ const DashBoardHome = () => {
       <DashboardCard name={"Songs"} count={allSongs?.length > 0 ? allSongs?.length : 0}>Songs</DashboardCard>
 
       {/* prettier-ignore */}
-      <DashboardCard name={"Artist"} count={artists?.length > 0 ? artists?.length : 0}>Artist</DashboardCard>
+      <DashboardCard name={"Artist"} count={artists?.length > 0 ? artists?.length : 0}>Artists</DashboardCard>
 
       {/* prettier-ignore */}
-      <DashboardCard name={"Album"} count={allAlbums?.length > 0 ? allAlbums?.length : 0} >Album</DashboardCard>
+      <DashboardCard name={"Album"} count={allAlbums?.length > 0 ? allAlbums?.length : 0} >Albums</DashboardCard>
     </div>
   );
 };
