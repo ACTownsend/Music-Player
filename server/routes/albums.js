@@ -33,7 +33,7 @@ router.get("/getOne/:id", async (req,res)  => {
 router.get("/getAll", async (req,res) => {
     const options = {
         sort: {
-            createdAT = 1,
+            createdAT : 1,
         },
     };
 
