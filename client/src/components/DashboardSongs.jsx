@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom"
 import {useStateValue} from "../context/StateProvider";
 import { getAllSongs } from '../api';
 import {actionType} from "../context/reducer"
-import { SongCard } from '.';
+import SongCard  from './SongCard';
 
 
 const DashboardSongs = () => {
