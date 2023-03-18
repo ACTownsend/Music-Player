@@ -14,7 +14,7 @@ export const getAllSongs = async () => {
 }
 export const getAllArtists = async () => {
     try {
-       const res =  await axios.get(`${baseURL}/api/songs/getAll`);
+       const res =  await axios.get(`${baseURL}/api/artists/getAll`);
         return res.data;
     } catch (error) {
         return null;
@@ -22,7 +22,7 @@ export const getAllArtists = async () => {
 }
 export const getAllAlbums = async () => {
     try {
-        const res = await axios.get(`${baseURL}/api/songs/getAll`);
+        const res = await axios.get(`${baseURL}/api/albums/getAll`);
         return res.data;
     } catch (error) {
         return null;
