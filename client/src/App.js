@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Dashboard, Home } from './components';
+import { app } from "./config/firebase.config";
 
 const App = () => {
   return (

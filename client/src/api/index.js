@@ -6,7 +6,7 @@ const baseURL = "https://oscarsolar-mileinvent-4001.codio-box.uk/";
 
 export const getAllSongs = async () => {
     try {
-        const res = await axios.get(`${baseURL}/api/songs/getAll`);
+        const res = await axios.get(`${baseURL}api/songs/getAll`);
         return res.data;
     } catch (error) {
         return null;
@@ -14,7 +14,7 @@ export const getAllSongs = async () => {
 }
 export const getAllArtists = async () => {
     try {
-       const res =  await axios.get(`${baseURL}/api/artists/getAll`);
+       const res =  await axios.get(`${baseURL}api/artists/getAll`);
         return res.data;
     } catch (error) {
         return null;
@@ -22,8 +22,16 @@ export const getAllArtists = async () => {
 }
 export const getAllAlbums = async () => {
     try {
-        const res = await axios.get(`${baseURL}/api/albums/getAll`);
+        const res = await axios.get(`${baseURL}api/albums/getAll`);
         return res.data;
+    } catch (error) {
+        return null;
+    }
+}
+export const saveNewSong = async (data) => {
+    try {
+        const res = axios.post(`${baseURL}api/songs/save`, {...data});
+        return (await res).data.savedSong;
     } catch (error) {
         return null;
     }

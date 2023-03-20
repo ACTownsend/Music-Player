@@ -19,8 +19,8 @@ app.use("api/artist/", artistsRoutes);
 const albumRoutes = require("./routes/albums");
 app.use("api/albums/", albumRoutes);
 //song routes
-const songRoutes = require("./routes/song");
-app.use("api/song/", songRoutes);
+const songRoutes = require("./routes/songs");
+app.use("api/songs/", songRoutes);
 
 mongoose.connect(process.env.DB_STRING, {useNewUrlParser: true});
 mongoose.connection
