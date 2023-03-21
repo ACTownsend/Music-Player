@@ -5,7 +5,7 @@ const songs = require("../models/songs");
 
 router.post("/save", async (req,res)  => {
 
-        const newSong = songs(
+        const newSong = new songs(
             {
                 name : req.body.name,
                 imageURL : req.body.imageURL,
@@ -36,21 +36,19 @@ router.get("/getOne/:id", async (req,res)  => {
 });
 
 
-router.get("/getAll", async (req,res) => {
+router.get("/getAll", async (req, res) => {
     const options = {
-        sort: {
-            createdAT : 1,
-        },
+      sort: { createdAt: 1,
+     },
     };
-
+  
     const data = await songs.find(options);
-    if(data){
-        return res.status(200).send({success : true, songs : data});
+    if (data) {
+      return res.status(200).send({ success: true, songs: data });
+    } else {
+      return res.status(200).send({ success: false, msg: "No Data Found" });
     }
-    else{
-        return res.status(400).send({success : false, msg : "Data not found"});
-    }
-});
+  });
 
 router.put("/update/:id", async (req,res) => {
     

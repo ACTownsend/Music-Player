@@ -15,30 +15,30 @@ export const DashboardCard = ({ name, count }) => {
 };
 
 const DashBoardHome = () => {
-  const [{ allSongs, artists, allAlbums }, dispatch] =
+  const [{ allSongs, allArtists, allAlbums }, dispatch] =
     useStateValue();
   useEffect(() => {
     if (!allSongs) {
       getAllSongs().then((data) => {
         dispatch({
           type: actionType.SET_ALL_SONGS,
-          allSongs: data.data,
+          allSongs: data.songs,
         });
       });
     }
 
-    if (!artists) {
+    if (!allArtists) {
       getAllArtists().then((data) => {
-        dispatch({ type: actionType.SET_ARTISTS, artists: data.data });
+        dispatch({ type: actionType.SET_ALL_ARTISTS, allArtists: data.artist });
       });
     }
  
     if (!allAlbums) {
       getAllAlbums().then((data) => {
-        dispatch({ type: actionType.SET_ALL_ALBUMNS, allAlbums: data.data });
+        dispatch({ type: actionType.SET_ALL_ALBUMS, allAlbums: data.album });
       });
     }
-  }, [allAlbums, allSongs, artists, dispatch]);
+  }, []);
   return (
     <div className="w-full p-6 flex items-center justify-evenly flex-wrap">
 
@@ -46,10 +46,10 @@ const DashBoardHome = () => {
       <DashboardCard name={"Songs"} count={allSongs?.length > 0 ? allSongs?.length : 0}>Songs</DashboardCard>
 
       {/* prettier-ignore */}
-      <DashboardCard name={"Artist"} count={artists?.length > 0 ? artists?.length : 0}>Artists</DashboardCard>
+      <DashboardCard name={"Artists"} count={allArtists?.length > 0 ? allArtists?.length : 0}>Artists</DashboardCard>
 
       {/* prettier-ignore */}
-      <DashboardCard name={"Album"} count={allAlbums?.length > 0 ? allAlbums?.length : 0} >Albums</DashboardCard>
+      <DashboardCard name={"Albums"} count={allAlbums?.length > 0 ? allAlbums?.length : 0} >Albums</DashboardCard>
     </div>
   );
 };

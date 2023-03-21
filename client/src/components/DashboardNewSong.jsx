@@ -17,6 +17,8 @@ import { storage } from "../config/firebase.config"
 const DashboardNewSong = () => {
 
   const [songName, setsongName] = useState("") 
+  const [artistName, setartistName] = useState("") 
+  const [albumName, setalbumName] = useState("") 
   const [isImageLoading, setisImageLoading] = useState(false)
   const [songImageCover, setsongImageCover] = useState(null)
   const [imageUploadProgress, setimageUploadProgress] = useState(0)
@@ -29,16 +31,15 @@ const DashboardNewSong = () => {
   const [{allArtists, allSongs, allAlbums, artistFilter, albumFilter, filterTerm}, dispatch] = useStateValue() 
   useEffect(() => {
     if(!allArtists) {
-      getAllArtists().then(data => {
-        console.log(data) 
+      getAllArtists().then((data) => {
         dispatch({
           type: actionType.SET_ALL_ARTISTS,
-          allArtists: data.artist,
+          allArtists: data.artists,
         })
       }) 
     }
     if(!allAlbums) {
-      getAllAlbums().then(data => {
+      getAllAlbums().then((data) => {
         console.log(data) 
         dispatch({
           type: actionType.SET_ALL_ALBUMS,
@@ -46,25 +47,24 @@ const DashboardNewSong = () => {
         })
       }) 
     }
-  }, [allArtists, allAlbums, dispatch]) 
+  }, []) 
 
 
   const saveSong = () => {
     if(!songImageCover || !audioImageCover) {
 
-    }
-    else {
-      setisAudioLoading(true)
-      setisImageLoading(true)
+    } else {
+      setisAudioLoading(true);
+      setisImageLoading(true);
 
       const data = {
         name : songName,
         imageURL : songImageCover,
         songURL : audioImageCover,
-        album : albumFilter,
-        artist : artistFilter,
+        album : albumName,
+        artist : artistName,
         category : filterTerm,
-      }
+      };
       saveNewSong(data).then((res) => {
         getAllSongs().then((songs) => {
           dispatch({
@@ -74,27 +74,37 @@ const DashboardNewSong = () => {
         })
       })
     }
-  }
+  };
   return (
     <div className='flex flex-col items- justify-center p-4 border border-gray-300 gap-4 rounded-md'>
       <input type="text" placeholder="Song name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={songName} onChange={(e) => setsongName(e.target.value)} />
-
+      <input type="text" placeholder="Song name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={artistName} onChange={(e) => setartistName(e.target.value)} />
+      <input type="text" placeholder="Song name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={albumName} onChange={(e) => setalbumName(e.target.value)} />
 
       <div className='flex w-full justify-between flex-wrap items-center gap-4'>
-        <FilterButtons filterData={allArtists} flag={"Artist"} />
-        <FilterButtons filterData={allAlbums} flag={"Albums"} />
         <FilterButtons filterData={genres} flag={"Category"} />
         </div>
 
         <div className='bg-card backdrop-blur-md w-full h-300 rounded-md border-2 border-dotted border-gray-300 cursor-pointer '> 
           {isImageLoading && <FileLoader progress = {imageUploadProgress} />}
           {!isImageLoading &&(
-            <>{!songImageCover ? (<FileUploader updateState = {setsongImageCover} setProgress = {setimageUploadProgress} isLoading = {setisImageLoading} isImage = {true}/>
+            <>
+              {!songImageCover ? (
+                <FileUploader
+                 updateState = {setsongImageCover}
+                 setProgress = {setimageUploadProgress}
+                 isLoading = {setisImageLoading}
+                 isImage = {true}
+                />
               ) : (
               <div className='relative w-full h-full overflow-hidden rounded-md'>
-                <img className='w-full h-full object-cover' src={songImageCover} alt="" />
+                <img
+                  src={songImageCover}
+                  className='w-full h-full object-cover'
+                  alt=""
+                />
               </div>
-            )}  
+              )}  
             </>
           )} 
         </div>
@@ -104,10 +114,15 @@ const DashboardNewSong = () => {
         <div className='bg-card backdrop-blur-md w-full h-300 flex items-center justify-center rounded-md border-2 border-dotted border-gray-300 cursor-pointer '> 
           {isAudioLoading && <FileLoader progress = {audioUploadProgress} />}
           {!isAudioLoading &&(
-            <>{!audioImageCover ? (<FileUploader updateState = {setaudioImageCover} setProgress = {setaudioUploadProgress} isLoading = {setisAudioLoading} isImage = {false}/>
+            <>{!audioImageCover ? (
+              <FileUploader
+                updateState = {setaudioImageCover}
+                setProgress = {setaudioUploadProgress}
+                isLoading = {setisAudioLoading}
+                isImage = {false}/>
               ) : (
-              <div className='relative w-full h-full overflow-hidden rounded-md'>
-                <audio controls src={audioImageCover} alt=""></audio>
+              <div className='relative w-full h-full flex items-center justify-center'>
+                <audio src={audioImageCover} controls></audio>
               </div>
             )} 
             </>
@@ -117,12 +132,15 @@ const DashboardNewSong = () => {
 
 
         <div className='flex items-center justify-center w-60 cursor-pointer p-4 '>
-                <button whileTap={{scale :0.75}}
-                className='px-8 py-2 rounded-md text-white bg-red-600 hover:shadow-lg'
-                onClick={saveSong}
-                >
+          {isImageLoading || isAudioLoading ? (
+            <div></div>
+          ) : (
+                <button
+                  className='px-8 py-2 w-full rounded-md text-white bg-red-600 hover:shadow-lg'
+                  onClick={saveSong}>
                   Save Song
                 </button>
+              )}  
         </div>
     </div>
   ) 
@@ -145,17 +163,19 @@ export const FileLoader = ({progress }) => {
 
 export const FileUploader = ({updateState, setProgress, isLoading, isImage }) => {
   const uploadFile = (e) => {
-    isLoading(true) 
-    const uploadedFile = e.target.files[0] 
+    isLoading(true); 
+    const uploadedFile = e.target.files[0]; 
     const storageRef = ref(
       storage,
       `${isImage ? "Images" : "Audio"}/${Date.now()}-${uploadedFile.name}`
     ) 
 
-    const uploadTask = uploadBytesResumable(storageRef, uploadedFile) 
+    const uploadTask = uploadBytesResumable(storageRef, uploadedFile); 
 
-    uploadTask.on("state_changed", (snapshot) => {
-      setProgress((snapshot.bytesTransferred / snapshot.totalBytes) *100) 
+    uploadTask.on(
+      "state_changed",
+        (snapshot) => {
+          setProgress((snapshot.bytesTransferred / snapshot.totalBytes) *100) 
     },
     (error) => {
       console.log(error) 
@@ -174,7 +194,13 @@ export const FileUploader = ({updateState, setProgress, isLoading, isImage }) =>
         <p className='text-lg'>Upload {isImage ? "an image for the song" : "audio"}</p>
       </div>
     </div>
-    <input className="w-0 h-0" onChange={uploadFile} type="file" name="upload-file" accept={`${isImage ? "image/*" : "audio/*"}`}/>
+    <input 
+      type="file"
+      name="upload-file"
+      accept={`${isImage ? "image/*" : "audio/*"}`}
+      className="w-0 h-0"
+      onChange={uploadFile}
+    />
   </label>
 }
 

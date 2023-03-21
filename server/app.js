@@ -1,32 +1,35 @@
 const express = require("express");
 const app = express();
-require("dotenv/config")
-
+require("dotenv/config");
 const cors = require("cors");
-const {default:mongoose} = require("mongoose");
+const { default: mongoose } = require("mongoose");
 
-app.use(cors({origin: true}));
-app.use(express.json())
+app.use(cors({ origin: true }));
+app.use(express.json());
 
-app.get("/", (req, res) =>{
-    return res.json("Testing Testing 123")
-})
 
-//artist routes
-const artistsRoutes = require("./routes/artist");
-app.use("api/artist/", artistsRoutes);
-//album routes
-const albumRoutes = require("./routes/albums");
-app.use("api/albums/", albumRoutes);
-//song routes
-const songRoutes = require("./routes/songs");
-app.use("api/songs/", songRoutes);
+// Artist links
+const artistsRoute = require("./routes/artist");
+app.use("/api/artists/", artistsRoute);
 
-mongoose.connect(process.env.DB_STRING, {useNewUrlParser: true});
+// Album links
+const albumRoute = require("./routes/albums");
+app.use("/api/albums/", albumRoute);
+
+// Songs links
+const songRoute = require("./routes/songs");
+app.use("/api/songs/", songRoute);
+
+// If any depreciation warning add depreciation options
+// mongoose.connect(process.env.DB_STRING, { useNewUrlParser: true }, () => {
+//   console.log("Mongodb Connected");
+// });
+
+mongoose.connect(process.env.DB_STRING, { useNewUrlParser: true });
 mongoose.connection
-.once("open", () => console.log("Connected"))
-.on("error", (error) =>{
-    console.log('Error: ${error}');
-})
-app.listen(4001, () => console.log("Listening to Port 4001"));
+  .once("open", () => console.log("Connected"))
+  .on("error", (error) => {
+    console.log(`Error : ${error}`);
+  });
 
+app.listen(4001, () => console.log("lisitening to port 4001"));
