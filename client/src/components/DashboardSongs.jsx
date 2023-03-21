@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom"
 import {useStateValue} from "../context/StateProvider";
 import { getAllSongs } from '../api';
 import {actionType} from "../context/reducer"
-import { SongCard } from '.';
+import SongCard  from './SongCard';
 
 
 const DashboardSongs = () => {
@@ -16,11 +16,11 @@ const DashboardSongs = () => {
       getAllSongs().then(data => {
         dispatch({
           type : actionType.SET_ALL_SONGS,
-          allSongs : data.song,
+          allSongs : data.songs,
         })
       });
     }
-  }, [allSongs, dispatch]);
+  }, []);
   return (
     <div className='w-full p-4 flex items-center justify-center flex-col'>
       <div className='w-full flex justify-center items-center gap-24'>
@@ -61,7 +61,7 @@ const DashboardSongs = () => {
 export const SongContainer = ({data}) => {
   return (
     <div className="w-full flex flex-wrap gap-3 items-center justify-evenly">
-      {data && data.map((song, i ) => (
+      {data && data.map((song, i) => (
         <SongCard key={song._id} data={song} index={i}/>
       ))}
     </div>
