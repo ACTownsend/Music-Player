@@ -10,15 +10,12 @@ const artistSchema = mongoose.Schema(
         },
         imageURL :{
             type : String,
-            required : true
         },
         twitter :{
             type : String,
-            required : true
         },
         instagram :{
             type : String,
-            required : true
         },
     },
 

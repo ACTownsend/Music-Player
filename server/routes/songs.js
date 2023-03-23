@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 
-const songs = require("../models/songs");
+const songs = require("../models/song");
 
 router.post("/save", async (req,res)  => {
 
@@ -37,16 +37,12 @@ router.get("/getOne/:id", async (req,res)  => {
 
 
 router.get("/getAll", async (req, res) => {
-    const options = {
-      sort: { createdAt: 1,
-     },
-    };
   
-    const data = await songs.find(options);
-    if (data) {
-      return res.status(200).send({ success: true, songs: data });
+    const everything = await songs.find({});
+    if (everything) {
+      return res.status(200).send({ success: true, songs: everything });
     } else {
-      return res.status(200).send({ success: false, msg: "No Data Found" });
+      return res.status(400).send({ success: false, msg: "No Data Found" });
     }
   });
 

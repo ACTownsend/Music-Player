@@ -10,7 +10,7 @@ app.use(express.json());
 
 // Artist links
 const artistsRoute = require("./routes/artist");
-app.use("/api/artists/", artistsRoute);
+app.use("/api/artist/", artistsRoute);
 
 // Album links
 const albumRoute = require("./routes/albums");

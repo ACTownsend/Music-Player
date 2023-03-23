@@ -35,13 +35,8 @@ router.get("/getOne/:id", async (req,res)  => {
 
 
 router.get("/getAll", async (req,res) => {
-    const options = {
-        sort: {
-            createdAt : 1,
-        },
-    };
 
-    const data = await artist.find(options);
+    const data = await artist.find({});
     if(data){
         return res.status(200).send({success : true, artist : data});
     }

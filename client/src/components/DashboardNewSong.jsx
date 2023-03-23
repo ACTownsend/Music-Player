@@ -3,7 +3,7 @@ import { useState } from 'react'
 import FilterButtons from './FilterButtons' 
 import { genres } from '../utils/filters' 
 import { useStateValue } from '../context/StateProvider' 
-import { getAllAlbums, getAllArtists, getAllSongs, saveNewSong } from '../api' 
+import { getAllAlbums, getAllArtists, getAllSongs, saveNewAlbum, saveNewArtist, saveNewSong } from '../api' 
 import { actionType } from '../context/reducer' 
 import { useEffect } from 'react' 
 import {
@@ -73,6 +73,30 @@ const DashboardNewSong = () => {
           })
         })
       })
+      saveNewArtist(data).then((res) => {
+        getAllArtists().then((artist) => {
+          dispatch({
+            type: actionType.SET_ALL_ARTISTS,
+            allArtists: artist.artist,
+          })
+        })
+      })
+      saveNewAlbum(data).then((res) => {
+        getAllAlbums().then((albums) => {
+          dispatch({
+            type: actionType.SET_ALL_ALBUMS,
+            allAlbums: albums.album,
+          })
+        })
+      })
+      setsongName("")
+      setsongImageCover(null)
+      setaudioImageCover(null)
+      setalbumName("")
+      setartistName("")
+      setisAudioLoading(false)
+      setisImageLoading(false)
+      dispatch({type: actionType.SET_FILTER_TERM, filterTerm: null })
     }
   };
   return (

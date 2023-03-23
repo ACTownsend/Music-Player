@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 
 const songsSchema = mongoose.Schema(
-
     {
         name :{
             type : String,
@@ -28,8 +27,7 @@ const songsSchema = mongoose.Schema(
             required : true
         },
     },
-
     {timestamps : true},
 );
 
-module.exports = mongoose.model("songs", songsSchema);
+module.exports = mongoose.model("song", songsSchema);

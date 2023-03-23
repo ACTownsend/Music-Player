@@ -13,7 +13,7 @@ const DashboardSongs = () => {
 
   useEffect(() => {
     if(!allSongs) {
-      getAllSongs().then(data => {
+      getAllSongs().then((data) => {
         dispatch({
           type : actionType.SET_ALL_SONGS,
           allSongs : data.songs,
@@ -51,7 +51,14 @@ const DashboardSongs = () => {
 
           </p>
         </div>
-          <SongContainer data={allSongs} />
+        {
+          allSongs && (
+            allSongs?.map((data, i ) => {
+              <SongContainer data={allSongs} />
+            })
+          )
+        }
+          
 
       </div> 
     </div>

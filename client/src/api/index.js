@@ -14,7 +14,7 @@ export const getAllSongs = async () => {
 }
 export const getAllArtists = async () => {
     try {
-       const res =  await axios.get(`${baseURL}api/artists/getAll`);
+       const res =  await axios.get(`${baseURL}api/artist/getAll`);
         return res.data;
     } catch (error) {
         return null;
@@ -29,6 +29,22 @@ export const getAllAlbums = async () => {
     }
 }
 export const saveNewSong = async (data) => {
+    try {
+        const res = axios.post(`${baseURL}api/songs/save`, {...data});
+        return (await res).data.savedSong;
+    } catch (error) {
+        return null;
+    }
+}
+export const saveNewArtist = async (data) => {
+    try {
+        const res = axios.post(`${baseURL}api/songs/save`, {...data});
+        return (await res).data.savedSong;
+    } catch (error) {
+        return null;
+    }
+}
+export const saveNewAlbum = async (data) => {
     try {
         const res = axios.post(`${baseURL}api/songs/save`, {...data});
         return (await res).data.savedSong;

@@ -5,5 +5,7 @@ export const initialState = {
     filterTerm: "all",
     artistFilter: null,
     albumFilter: null,
+    songCount: 0,
+
 
 };

@@ -31,13 +31,8 @@ router.get("/getOne/:id", async (req,res)  => {
 });
 
 router.get("/getAll", async (req,res) => {
-    const options = {
-        sort: {
-            createdAT : 1,
-        },
-    };
 
-    const data = await album.find(options);
+    const data = await album.find({});
     if(data){
         return res.status(200).send({success : true, album : data});
     }
