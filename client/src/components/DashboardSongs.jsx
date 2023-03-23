@@ -20,7 +20,7 @@ const DashboardSongs = () => {
         })
       });
     }
-  }, []);
+  }, []); 
   return (
     <div className='w-full p-4 flex items-center justify-center flex-col'>
       <div className='w-full flex justify-center items-center gap-24'>
@@ -37,12 +37,10 @@ const DashboardSongs = () => {
          onBlur={() => {setIsFocus(false);} }
          onFocus={() => setIsFocus(true) }
          />
-
-      <p>test</p>
       </div>
 
-      <div classname="relative w-full my-4 p-4 py-12 border border-gray-300 rounded-md">
-        <div className='abosolute top-4 left-4'>
+      <div classname="relative w-full my-4 p-4 border border-gray-300 rounded-md">
+        <div className='absolute top-4 left-4'>
           <p className='text-xl font-bold'>
             <span className='text-sm font-semibold text-textColor'>
               Count :{" "}
@@ -51,14 +49,8 @@ const DashboardSongs = () => {
 
           </p>
         </div>
-        {
-          allSongs && (
-            allSongs?.map((data, i ) => {
-              <SongContainer data={allSongs} />
-            })
-          )
-        }
-          
+
+        <SongContainer data={allSongs} />
 
       </div> 
     </div>
@@ -68,7 +60,8 @@ const DashboardSongs = () => {
 export const SongContainer = ({data}) => {
   return (
     <div className="w-full flex flex-wrap gap-3 items-center justify-evenly">
-      {data && data.map((song, i) => (
+      {data &&
+       data.map((song, i) => (
         <SongCard key={song._id} data={song} index={i}/>
       ))}
     </div>
