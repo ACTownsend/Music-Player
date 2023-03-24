@@ -6,6 +6,7 @@ export const initialState = {
     artistFilter: null,
     albumFilter: null,
     songCount: 0,
-
+    isSongPlaying : false,
+    songIndex : 0,
 
 };

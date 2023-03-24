@@ -28,7 +28,7 @@ const DashboardNewSong = () => {
   const [isAudioLoading, setisAudioLoading] = useState(false)
 
 
-  const [{allArtists, allSongs, allAlbums, artistFilter, albumFilter, filterTerm}, dispatch] = useStateValue() 
+  const [{allArtists, allAlbums, filterTerm}, dispatch] = useStateValue() 
   useEffect(() => {
     if(!allArtists) {
       getAllArtists().then((data) => {

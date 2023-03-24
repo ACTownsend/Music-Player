@@ -1,10 +1,27 @@
 import React from 'react'
-import { useState } from 'react';
-import { getAllAlbums, getAllArtists, getAllSongs } from '../api';
+import { actionType } from '../context/reducer';
+import { useStateValue } from '../context/StateProvider';
 
-const SongCard = ({data, index}) => {
+const SongCard = ({data, index, type}) => {
+  const [{allSongs, songIndex, isSongPlaying}, dispatch] = useStateValue();
+
+  const addToContext = () => {
+    if (!isSongPlaying) {
+      dispatch({
+        type : actionType.SET_ISSONG_PLAYING,
+        isSongPlaying : true,
+      })
+    }
+    if (songIndex !== index) {
+      dispatch({
+        type : actionType.SET_SONG_INDEX,
+        songIndex : index,
+      })
+    }
+  }
   return (
-    <div className='relative w-40 min-w-210 px-2 py-4 cursor-pointer hover:bg-card bg-gray-100 shadow-md rounded-lg flex flex-col items-center'>
+    <div className='relative w-40 min-w-210 px-2 py-4 cursor-pointer hover:bg-card bg-gray-100 shadow-md rounded-lg flex flex-col items-center' 
+    onClick={addToContext}>
         <div className='w-40 min-w-[160px] h-40 min0-h-[160px] rounded-lg drop-shadow-lg relative overflow-hidden'>
         <img src={data.imageURL} className='w-full h-full rounded-lg object-cover' alt='img'></img>
         </div>
