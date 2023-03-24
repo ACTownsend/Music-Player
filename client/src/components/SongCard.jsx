@@ -5,20 +5,27 @@ import { useStateValue } from '../context/StateProvider';
 const SongCard = ({data, index, type}) => {
   const [{allSongs, songIndex, isSongPlaying}, dispatch] = useStateValue();
 
-  const addToContext = () => {
-    if (!isSongPlaying) {
-      dispatch({
-        type : actionType.SET_ISSONG_PLAYING,
-        isSongPlaying : true,
-      })
+
+  const addToContext = (type) => {
+    if (data.artist) {
+      if (!isSongPlaying) {
+        dispatch({
+          type : actionType.SET_ISSONG_PLAYING,
+          isSongPlaying : true,
+        })
+      }
+      if (songIndex !== index) {
+        dispatch({
+          type : actionType.SET_SONG_INDEX,
+          songIndex : index,
+        })
+      }
     }
-    if (songIndex !== index) {
-      dispatch({
-        type : actionType.SET_SONG_INDEX,
-        songIndex : index,
-      })
+    else {
+      return <div></div>
     }
   }
+  
   return (
     <div className='relative w-40 min-w-210 px-2 py-4 cursor-pointer hover:bg-card bg-gray-100 shadow-md rounded-lg flex flex-col items-center' 
     onClick={addToContext}>
