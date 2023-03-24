@@ -40,13 +40,12 @@ const DashboardSongs = () => {
       </div>
 
       <div classname="relative w-full my-4 p-4 border border-gray-300 rounded-md">
-        <div className='absolute top-4 left-4'>
+        <div>
           <p className='text-xl font-bold'>
             <span className='text-sm font-semibold text-textColor'>
               Count :{" "}
             </span>
             {allSongs?.length}
-
           </p>
         </div>
 

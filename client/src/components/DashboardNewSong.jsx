@@ -28,7 +28,7 @@ const DashboardNewSong = () => {
   const [isAudioLoading, setisAudioLoading] = useState(false)
 
 
-  const [{allArtists, allSongs, allAlbums, artistFilter, albumFilter, filterTerm}, dispatch] = useStateValue() 
+  const [{allArtists, allAlbums, filterTerm}, dispatch] = useStateValue() 
   useEffect(() => {
     if(!allArtists) {
       getAllArtists().then((data) => {
@@ -57,7 +57,7 @@ const DashboardNewSong = () => {
       setisAudioLoading(true);
       setisImageLoading(true);
 
-      const data = {
+      const songData = {
         name : songName,
         imageURL : songImageCover,
         songURL : audioImageCover,
@@ -65,7 +65,16 @@ const DashboardNewSong = () => {
         artist : artistName,
         category : filterTerm,
       };
-      saveNewSong(data).then((res) => {
+      const artistData = {
+        name : artistName,
+        imageURL : songImageCover,
+
+      };
+      const albumData = {
+        name : albumName,
+        imageURL : songImageCover,
+      };
+      saveNewSong(songData).then((res) => {
         getAllSongs().then((songs) => {
           dispatch({
             type: actionType.SET_ALL_SONGS,
@@ -73,7 +82,7 @@ const DashboardNewSong = () => {
           })
         })
       })
-      saveNewArtist(data).then((res) => {
+      saveNewArtist(artistData).then((res) => {
         getAllArtists().then((artist) => {
           dispatch({
             type: actionType.SET_ALL_ARTISTS,
@@ -81,7 +90,7 @@ const DashboardNewSong = () => {
           })
         })
       })
-      saveNewAlbum(data).then((res) => {
+      saveNewAlbum(albumData).then((res) => {
         getAllAlbums().then((albums) => {
           dispatch({
             type: actionType.SET_ALL_ALBUMS,
@@ -102,8 +111,8 @@ const DashboardNewSong = () => {
   return (
     <div className='flex flex-col items- justify-center p-4 border border-gray-300 gap-4 rounded-md'>
       <input type="text" placeholder="Song name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={songName} onChange={(e) => setsongName(e.target.value)} />
-      <input type="text" placeholder="Song name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={artistName} onChange={(e) => setartistName(e.target.value)} />
-      <input type="text" placeholder="Song name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={albumName} onChange={(e) => setalbumName(e.target.value)} />
+      <input type="text" placeholder="Artist name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={artistName} onChange={(e) => setartistName(e.target.value)} />
+      <input type="text" placeholder="Album name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={albumName} onChange={(e) => setalbumName(e.target.value)} />
 
       <div className='flex w-full justify-between flex-wrap items-center gap-4'>
         <FilterButtons filterData={genres} flag={"Category"} />

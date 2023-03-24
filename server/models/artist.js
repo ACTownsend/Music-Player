@@ -11,12 +11,6 @@ const artistSchema = mongoose.Schema(
         imageURL :{
             type : String,
         },
-        twitter :{
-            type : String,
-        },
-        instagram :{
-            type : String,
-        },
     },
 
     {timestamps : true},

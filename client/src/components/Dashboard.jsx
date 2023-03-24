@@ -12,7 +12,7 @@ import DashboardNewSong from './DashboardNewSong';
 const Dashboard = () => {
   return (
     <div className="w-full h-auto flex flex-col items-center justify-evenly bg-primary">
-        <Header />
+       <Header />
       <div className='w-full my-2 p-4 flex items-center justify-evenly'>
         <NavLink to={"/dashboard/home"}>Home</NavLink> 
         <NavLink to={"/dashboard/songs"} className={({ isActive }) => isActive ? isActiveStyles : isNotActiveStyles}>Songs</NavLink> 

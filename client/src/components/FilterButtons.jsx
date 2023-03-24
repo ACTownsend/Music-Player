@@ -1,17 +1,20 @@
 import React from 'react'
 import { useState } from 'react' 
-
-
+import { actionType } from '../context/reducer'
+import { useStateValue } from "../context/StateProvider";
 
 const FilterButtons = ({filterData, flag}) => {
   const [filterName, setfilterName] = useState(null) 
   const [filterMenu, setfilterMenu] = useState(false) 
-
+  const [{ filterTerm }, dispatch] = useStateValue();
 
 
   const updateFilterButton = (name) => {
     setfilterName(name) 
     setfilterMenu(false) 
+    if (flag === "Category") {
+      dispatch({ type: actionType.SET_FILTER_TERM, filterTerm: name });
+    }
   } 
   return (
     <div className='border border-gray-300 rounded-md px-4 py-1 relative cursor-pointer hover:border-gray-400'>
