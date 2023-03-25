@@ -2,10 +2,21 @@ import React from 'react'
 import { actionType } from '../context/reducer';
 import { useStateValue } from '../context/StateProvider';
 
+/**
+ * Represents a song card component.
+ * @function
+ * @param {Object} data - The data object containing song details.
+ * @param {number} index - The index of the song in the list.
+ * @param {string} type - The type of the song.
+ */
 const SongCard = ({data, index, type}) => {
   const [{allSongs, songIndex, isSongPlaying}, dispatch] = useStateValue();
 
-
+  /**
+   * Adds the current song to the context.
+   * @function
+   * @param {string} type - The type of the song.
+   */
   const addToContext = (type) => {
     if (data.artist) {
       if (!isSongPlaying) {

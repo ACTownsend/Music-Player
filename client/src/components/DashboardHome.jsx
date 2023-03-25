@@ -3,6 +3,12 @@ import { getAllAlbums, getAllArtists, getAllSongs } from "../api";
 import { actionType } from "../context/reducer";
 import { useStateValue } from "../context/StateProvider";
 
+/**
+ * Represents a card displaying the count of a specific item.
+ * @constructor
+ * @param {string} name - The name of the item to display.
+ * @param {number} count - The count of the item to display.
+ */
 export const DashboardCard = ({ name, count }) => {
 
   return (
@@ -14,6 +20,10 @@ export const DashboardCard = ({ name, count }) => {
   );
 };
 
+/**
+ * The dashboard homepage component.
+ * @constructor
+ */
 const DashBoardHome = () => {
   const [{ allSongs, allArtists, allAlbums }, dispatch] =
     useStateValue();
@@ -42,13 +52,13 @@ const DashBoardHome = () => {
   return (
     <div className="w-full p-6 flex items-center justify-evenly flex-wrap">
 
-      {/* prettier-ignore */}
+      
       <DashboardCard name={"Songs"} count={allSongs?.length > 0 ? allSongs?.length : 0}>Songs</DashboardCard>
 
-      {/* prettier-ignore */}
+      
       <DashboardCard name={"Artists"} count={allArtists?.length > 0 ? allArtists?.length : 0}>Artists</DashboardCard>
 
-      {/* prettier-ignore */}
+   
       <DashboardCard name={"Albums"} count={allAlbums?.length > 0 ? allAlbums?.length : 0} >Albums</DashboardCard>
     </div>
   );

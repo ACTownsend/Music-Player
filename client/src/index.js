@@ -12,6 +12,9 @@ import { BrowserRouter as Router} from "react-router-dom";
 
 const container = document.getElementById('root')
 const root = ReactDOMClient.createRoot(container);
+/**
+ * Renders the app component inside the root element.
+ */
 root.render(
 
     <React.StrictMode>
@@ -22,6 +25,4 @@ root.render(
         </Router>
 
     </React.StrictMode>,
-    
-
-    ); 
+); 

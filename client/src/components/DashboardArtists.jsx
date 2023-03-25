@@ -4,8 +4,13 @@ import { getAllArtists } from '../api'
 import { actionType } from '../context/reducer'
 import SongCard from './SongCard'
 
+/**
+ * Renders a dashboard for the list of artists.
+ * It fetches all artists from the database using the 'getAllArtists' API.
+ */
 const DashboardArtists = () => {
   const [{allArtists }, dispatch] = useStateValue();
+  // Fetch all artists when the component mounts.
     useEffect(() => {
       if (!allArtists) {
         getAllArtists().then((data) => {
@@ -26,6 +31,10 @@ const DashboardArtists = () => {
     </div>
   )
 }
+/**
+ * Renders a container for the list of artists.
+ * @param {Array} data - The array of artist data to display.
+ */
 export const ArtistContainer = ({data}) => {
   return (
     <div className="w-full flex flex-wrap gap-3 items-center justify-evenly">

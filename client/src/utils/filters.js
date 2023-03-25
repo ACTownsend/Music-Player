@@ -1,3 +1,7 @@
+/**
+ * An array of music genres.
+ * @type {Genre[]}
+ */
 export const genres = [
    { id: 1, name: "Rock", value: "rock" },
    { id: 2, name: "Hip-hop", value: "hip-hop" },

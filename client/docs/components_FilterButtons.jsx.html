@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/FilterButtons.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/FilterButtons.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react'
+import { useState } from 'react' 
+import { actionType } from '../context/reducer'
+import { useStateValue } from "../context/StateProvider";
+
+/**
+ * Component that renders filter buttons to filter search results by category, artist or album.
+ * @param {object} filterData - Data used to generate the filter buttons
+ * @param {string} flag - Category, Artist, or Album 
+ * @returns {JSX.Element} - Returns the filter buttons
+ */
+const FilterButtons = ({filterData, flag}) => {
+  const [filterName, setfilterName] = useState(null) 
+  const [filterMenu, setfilterMenu] = useState(false) 
+  const [{ filterTerm }, dispatch] = useStateValue();
+
+  /**
+   * Update filter button name and dispatches action to update filter term.
+   * @param {string} name - Name of the filter button
+   * @returns {void}
+   */
+  const updateFilterButton = (name) => {
+    setfilterName(name) 
+    setfilterMenu(false) 
+    if (flag === "Category") {
+      dispatch({ type: actionType.SET_FILTER_TERM, filterTerm: name });
+    }
+  } 
+  return (
+    &lt;div className='border border-gray-300 rounded-md px-4 py-1 relative cursor-pointer hover:border-gray-400'>
+        &lt;p className='text-base tracking-wide text-textColor flex items-center gap-2'
+         onClick={() => setfilterMenu(!filterMenu)}>
+
+
+          {!filterName &amp;&amp; flag}
+          {filterName &amp;&amp; (
+            &lt;>
+            {filterName.length > 15 ? `${filterName.slice(0, 14)}...`: filterName}
+            &lt;/>
+          )}
+          &lt;span className={`text-base text-textColor duration-150 transition-all ease-in-out ${filterMenu ? "rotate-180" : "rotate-0"}`}>v &lt;/span>
+        &lt;/p>
+
+        {filterData &amp;&amp; filterMenu &amp;&amp; (
+          &lt;div className='w-48 z-50 backdrop-blur-sm max-h-44 overflow-y-scroll scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 py-2 flex flex-col rounded-md shadow-md absolute top-8 left-0'>
+            {filterData?.map((data) => (
+              &lt;div
+               key={data.name}
+               className='flex items-center gap-2 px-4 py-1 hover:bg-gray-200'
+               onClick={() => updateFilterButton(data.name)}
+              >
+                {(flag === "Artist" ||  flag === "Album") &amp;&amp; (
+                  &lt;img
+                    src={data.imageURL}
+                    className='w-8 min-w-[32px] rounded-full object-cover'
+                    alt="alt"
+                  />
+                  )}
+                  &lt;p className='w-full '>
+                    {data.name.length > 15
+                     ? `${data.name.slice(0,15)}...` 
+                     : data.name }
+                  &lt;/p>
+              &lt;/div>
+            ))}  
+          &lt;/div>
+        )} 
+        &lt;/div>
+
+  )
+}
+
+export default FilterButtons </code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DashBoardHome.html">DashBoardHome</a></li><li><a href="DashboardCard.html">DashboardCard</a></li><li><a href="DashboardNewSong.html">DashboardNewSong</a></li><li><a href="firebaseConfig.html">firebaseConfig</a></li><li><a href="getAllAlbums.html">getAllAlbums</a></li><li><a href="getAllArtists.html">getAllArtists</a></li><li><a href="getAllSongs.html">getAllSongs</a></li><li><a href="initialState.html">initialState</a></li><li><a href="saveNewAlbum.html">saveNewAlbum</a></li><li><a href="saveNewArtist.html">saveNewArtist</a></li><li><a href="saveNewSong.html">saveNewSong</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AlbumContainer">AlbumContainer</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#ArtistContainer">ArtistContainer</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DashboardAlbums">DashboardAlbums</a></li><li><a href="global.html#DashboardArtists">DashboardArtists</a></li><li><a href="global.html#DashboardSongs">DashboardSongs</a></li><li><a href="global.html#FileLoader">FileLoader</a></li><li><a href="global.html#FileUploader">FileUploader</a></li><li><a href="global.html#FilterButtons">FilterButtons</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#MusicPlayer">MusicPlayer</a></li><li><a href="global.html#PlaylistCard">PlaylistCard</a></li><li><a href="global.html#SongCard">SongCard</a></li><li><a href="global.html#SongContainer">SongContainer</a></li><li><a href="global.html#StateContext">StateContext</a></li><li><a href="global.html#StateProvider">StateProvider</a></li><li><a href="global.html#actionType">actionType</a></li><li><a href="global.html#genres">genres</a></li><li><a href="global.html#isActiveStyles">isActiveStyles</a></li><li><a href="global.html#isNotActiveStyles">isNotActiveStyles</a></li><li><a href="global.html#reducer">reducer</a></li><li><a href="global.html#useStateValue">useStateValue</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Mar 25 2023 00:41:33 GMT+0000 (GMT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

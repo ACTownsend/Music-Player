@@ -3,7 +3,10 @@ import axios from "axios";
 const baseURL = "https://oscarsolar-mileinvent-4001.codio-box.uk/";
 
 
-
+/**
+ * Represents a book.
+ * @constructor
+ */
 export const getAllSongs = async () => {
     try {
         const res = await axios.get(`${baseURL}api/songs/getAll`);
@@ -12,6 +15,10 @@ export const getAllSongs = async () => {
         return null;
     }
 }
+/**
+ * Represents a book.
+ * @constructor
+ */
 export const getAllArtists = async () => {
     try {
        const res =  await axios.get(`${baseURL}api/artist/getAll`);
@@ -20,6 +27,10 @@ export const getAllArtists = async () => {
         return null;
     }
 }
+/**
+ * Represents a book.
+ * @constructor
+ */
 export const getAllAlbums = async () => {
     try {
         const res = await axios.get(`${baseURL}api/albums/getAll`);
@@ -28,6 +39,10 @@ export const getAllAlbums = async () => {
         return null;
     }
 }
+/**
+ * Represents a book.
+ * @constructor
+ */
 export const saveNewSong = async (data) => {
     try {
         const res = axios.post(`${baseURL}api/songs/save`, {...data});
@@ -36,6 +51,10 @@ export const saveNewSong = async (data) => {
         return null;
     }
 }
+/**
+ * Represents a book.
+ * @constructor
+ */
 export const saveNewArtist = async (data) => {
     try {
         const res = axios.post(`${baseURL}api/songs/save`, {...data});
@@ -44,6 +63,10 @@ export const saveNewArtist = async (data) => {
         return null;
     }
 }
+/**
+ * Represents a book.
+ * @constructor
+ */
 export const saveNewAlbum = async (data) => {
     try {
         const res = axios.post(`${baseURL}api/songs/save`, {...data});

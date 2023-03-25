@@ -3,7 +3,11 @@ import { Route, Routes } from 'react-router-dom';
 import { Dashboard, Home, MusicPlayer } from './components';
 import { useStateValue } from './context/StateProvider';
 
-
+/**
+ * The main application component.
+ * @function
+ * @returns {JSX.Element}
+ */
 const App = () => {
   const [{isSongPlaying }, dispatch] = useStateValue();
   return (

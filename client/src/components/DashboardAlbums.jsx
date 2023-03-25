@@ -4,6 +4,10 @@ import { getAllAlbums } from '../api'
 import { actionType } from '../context/reducer'
 import SongCard from './SongCard'
 
+/**
+ * DashboardAlbums component that represents the Albums page on the dashboard.
+ * @returns {JSX.Element} JSX element that renders the Albums page.
+ */
 const DashboardAlbums = () => {
   const [{allAlbums }, dispatch] = useStateValue();
     useEffect(() => {
@@ -26,6 +30,11 @@ const DashboardAlbums = () => {
     </div>
   )
 }
+/**
+ * AlbumContainer component that renders a list of albums.
+ * @param {Object} data - An object containing album data.
+ * @returns {JSX.Element} JSX element that renders the album list.
+ */
 export const AlbumContainer = ({data}) => {
   return (
     <div className="w-full flex flex-wrap gap-3 items-center justify-evenly">

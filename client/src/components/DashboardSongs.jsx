@@ -5,13 +5,17 @@ import { getAllSongs } from '../api';
 import {actionType} from "../context/reducer"
 import SongCard  from './SongCard';
 
-
+/**
+ * Component representing a dashboard for displaying all the songs.
+ * @function
+ */
 const DashboardSongs = () => {
   const [songFilter, setSongFilter] = useState("");
   const [isFocus, setIsFocus] = useState(false);
   const [{allSongs}, dispatch] = useStateValue(null);
 
   useEffect(() => {
+    // Fetches all songs when the component mounts.
     if(!allSongs) {
       getAllSongs().then((data) => {
         dispatch({
@@ -56,6 +60,11 @@ const DashboardSongs = () => {
   );
 };
 
+/**
+ * Component for displaying all the song cards.
+ * @function
+ * @param {Object[]} data - An array of song data.
+ */
 export const SongContainer = ({data}) => {
   return (
     <div className="w-full flex flex-wrap gap-3 items-center justify-evenly">

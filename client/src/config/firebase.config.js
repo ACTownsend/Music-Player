@@ -1,7 +1,12 @@
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
-
+/**
+ * Represents a Firebase app and storage instance.
+ * @constructor
+ * @property {Object} app - The Firebase app instance.
+ * @property {Object} storage - The Firebase storage instance.
+ */
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,

@@ -4,6 +4,10 @@ require("dotenv/config");
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
 
+/**
+ * Enables cross-origin resource sharing for all origins.
+ * Parses incoming JSON payloads.
+ */
 app.use(cors({ origin: true }));
 app.use(express.json());
 
@@ -20,11 +24,11 @@ app.use("/api/albums/", albumRoute);
 const songRoute = require("./routes/songs");
 app.use("/api/songs/", songRoute);
 
-// If any depreciation warning add depreciation options
-// mongoose.connect(process.env.DB_STRING, { useNewUrlParser: true }, () => {
-//   console.log("Mongodb Connected");
-// });
-
+/**
+ * Connects to the MongoDB database using the DB_STRING environment variable.
+ * Logs a message to the console when the connection is successfully established.
+ * Logs an error message to the console if there is a connection error.
+ */
 mongoose.connect(process.env.DB_STRING, { useNewUrlParser: true });
 mongoose.connection
   .once("open", () => console.log("Connected"))
@@ -32,4 +36,8 @@ mongoose.connection
     console.log(`Error : ${error}`);
   });
 
+  /**
+ * Starts the server listening on port 4001.
+ * Logs a message to the console when the server starts.
+ */
 app.listen(4001, () => console.log("lisitening to port 4001"));

@@ -1,3 +1,7 @@
+/**
+ * Represents the initial state of the app context.
+ * @constructor
+ */
 export const initialState = {
     allSongs: null,
     allArtists: null,

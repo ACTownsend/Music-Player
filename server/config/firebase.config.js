@@ -1,6 +1,10 @@
 import {getApp, getApps, initializeApp} from"firebase/app"
 import {getStorage} from "firebase/storage"
 
+/**
+ * Firebase app instance.
+ * @type {firebase.app.App}
+ */
 const firebaseConfig = {
 
   apiKey: "AIzaSyA2XLsE-kgl6MZk9Dpc5JEAreHV5uvLRvM",
@@ -20,6 +24,11 @@ const firebaseConfig = {
 };
 
 const app = getApps.length > 0 ? getApp() : initializeApp(firebaseConfig);
+
+/**
+ * Firebase storage instance.
+ * @type {firebase.storage.Storage}
+ */
 const storage = getStorage(app)
 
 export {app, storage}

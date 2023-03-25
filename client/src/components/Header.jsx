@@ -1,6 +1,11 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 
+/**
+ * Represents a Header component.
+ * @function
+ * @returns {JSX.Element}
+ */
 const Header = () => {
   return (
     <header className='flex items-center w-full p-4 md:py-2 md:px-6'>

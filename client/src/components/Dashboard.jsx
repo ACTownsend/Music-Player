@@ -8,7 +8,10 @@ import DashboardSongs from "./DashboardSongs";
 import DashboardHome from './DashboardHome';
 import DashboardNewSong from './DashboardNewSong';
 
-
+/**
+ * Dashboard component that represents a dashboard page in a music app.
+ * @returns {JSX.Element} JSX element that renders the dashboard page.
+ */
 const Dashboard = () => {
   return (
     <div className="w-full h-auto flex flex-col items-center justify-evenly bg-primary">

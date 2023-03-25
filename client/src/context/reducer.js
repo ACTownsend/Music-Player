@@ -1,3 +1,8 @@
+/**
+ * Enum for action types.
+ * @readonly
+ * @enum {string}
+ */
 export const actionType = {
     SET_ALL_ARTISTS : "SET_ALL_ARTISTS",
     SET_ALL_ALBUMS : "SET_ALL_ALBUMS",
@@ -11,6 +16,14 @@ export const actionType = {
     SET_SONG_INDEX : "SET_SONG_INDEX",
 };
 
+/**
+ * Reducer function for managing the app state.
+ * @param {Object} state - The current state of the app.
+ * @param {Object} action - The action to be performed.
+ * @param {string} action.type - The type of the action to be performed.
+ * @param {*} action.[property] - Additional properties associated with the action.
+ * @returns {Object} - The new state of the app.
+ */
 const reducer = (state, action) => {
     console.log(action);
 

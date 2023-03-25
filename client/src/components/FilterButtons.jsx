@@ -3,12 +3,22 @@ import { useState } from 'react'
 import { actionType } from '../context/reducer'
 import { useStateValue } from "../context/StateProvider";
 
+/**
+ * Component that renders filter buttons to filter search results by category, artist or album.
+ * @param {object} filterData - Data used to generate the filter buttons
+ * @param {string} flag - Category, Artist, or Album 
+ * @returns {JSX.Element} - Returns the filter buttons
+ */
 const FilterButtons = ({filterData, flag}) => {
   const [filterName, setfilterName] = useState(null) 
   const [filterMenu, setfilterMenu] = useState(false) 
   const [{ filterTerm }, dispatch] = useStateValue();
 
-
+  /**
+   * Update filter button name and dispatches action to update filter term.
+   * @param {string} name - Name of the filter button
+   * @returns {void}
+   */
   const updateFilterButton = (name) => {
     setfilterName(name) 
     setfilterMenu(false) 

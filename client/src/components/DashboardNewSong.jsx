@@ -14,8 +14,14 @@ import {
   deleteObject,
 } from "firebase/storage" 
 import { storage } from "../config/firebase.config" 
-const DashboardNewSong = () => {
 
+
+/**
+ * Represents the new song creation form in the dashboard.
+ * @constructor
+ */
+const DashboardNewSong = () => {
+// Define state variables
   const [songName, setsongName] = useState("") 
   const [artistName, setartistName] = useState("") 
   const [albumName, setalbumName] = useState("") 
@@ -27,8 +33,9 @@ const DashboardNewSong = () => {
   const [audioUploadProgress, setaudioUploadProgress] = useState(0)
   const [isAudioLoading, setisAudioLoading] = useState(false)
 
-
+  // Get state and dispatch functions from the context provider
   const [{allArtists, allAlbums, filterTerm}, dispatch] = useStateValue() 
+  // Fetch artists and albums on mount
   useEffect(() => {
     if(!allArtists) {
       getAllArtists().then((data) => {
@@ -49,11 +56,15 @@ const DashboardNewSong = () => {
     }
   }, []) 
 
-
+  /**
+   * Saves the new song, artist, and album to the database.
+   * Resets form inputs and state variables on completion.
+   */
   const saveSong = () => {
     if(!songImageCover || !audioImageCover) {
-
+      // Handle missing song or audio image
     } else {
+      
       setisAudioLoading(true);
       setisImageLoading(true);
 
@@ -179,6 +190,12 @@ const DashboardNewSong = () => {
   ) 
 } 
 
+/**
+ * A component that displays a loading animation and progress percentage.
+ * @param {object} props - The component props.
+ * @param {number} props.progress - The progress percentage to display.
+ * @return {JSX.Element} - The rendered component.
+ */
 export const FileLoader = ({progress }) => {
   return (
     <div className='w-full h-full flex flex-col items-center justify-center'>
@@ -194,7 +211,20 @@ export const FileLoader = ({progress }) => {
   )
 }
 
+/**
+ * A component that allows the user to upload a file.
+ * @param {object} props - The component props.
+ * @param {function} props.updateState - A function to update the state with the uploaded file.
+ * @param {function} props.setProgress - A function to set the progress percentage of the upload.
+ * @param {function} props.isLoading - A function to set the loading state of the component.
+ * @param {boolean} props.isImage - A boolean indicating whether the file to be uploaded is an image.
+ * @return {JSX.Element} - The rendered component.
+ */
 export const FileUploader = ({updateState, setProgress, isLoading, isImage }) => {
+    /**
+   * Handles the file upload process.
+   * @param {object} e - The event object.
+   */
   const uploadFile = (e) => {
     isLoading(true); 
     const uploadedFile = e.target.files[0]; 

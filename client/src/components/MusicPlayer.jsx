@@ -7,7 +7,15 @@ import { actionType } from '../context/reducer';
 import { useEffect } from 'react';
 import { getAllSongs } from '../api';
 
+/**
+ * Represents the music player component.
+ * @function
+ */
 const MusicPlayer = () => {
+  /**
+   * Plays the next song.
+   * @function
+   */
   const nextSong = () => {
     if(songIndex >= allSongs.length - 1){
       dispatch({
@@ -22,6 +30,10 @@ const MusicPlayer = () => {
       })
     }
   }
+  /**
+   * Plays the previous song.
+   * @function
+   */
   const previousSong = () => {
     if(songIndex === 0){
       dispatch({
@@ -37,6 +49,10 @@ const MusicPlayer = () => {
     }
   }
 
+  /**
+   * Closes the music player.
+   * @function
+   */
   const closePlayer = () => {
     dispatch({
       type : actionType.SET_ISSONG_PLAYING,
@@ -94,9 +110,16 @@ const MusicPlayer = () => {
 
 
 
-
+/**
+ * Represents the playlist card component.
+ * @function
+ */
 export const PlaylistCard = () => {
   const[{allSongs, songIndex, isSongPlaying}, dispatch] = useStateValue();
+    /**
+   * Fetches all songs and updates state when component mounts.
+   * @function
+   */
   useEffect(() => {
     if(!allSongs) {
       getAllSongs().then((data) => {
@@ -107,7 +130,12 @@ export const PlaylistCard = () => {
       });
     }
   }, []);
-
+    
+  /**
+   * Sets the current song when a user clicks on a playlist item.
+   * @function
+   * @param {number} index - The index of the song in the playlist.
+   */
     const setCurrentSong = (index) => {
       if (!isSongPlaying) {
         dispatch({
