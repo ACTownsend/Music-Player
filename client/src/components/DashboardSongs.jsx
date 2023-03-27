@@ -13,6 +13,7 @@ const DashboardSongs = () => {
   const [songFilter, setSongFilter] = useState("");
   const [isFocus, setIsFocus] = useState(false);
   const [{allSongs}, dispatch] = useStateValue(null);
+  const [filteredSongs, setFilteredSongs] = useState(null);
 
   useEffect(() => {
     // Fetches all songs when the component mounts.
@@ -25,6 +26,18 @@ const DashboardSongs = () => {
       });
     }
   }, []); 
+  useEffect(() => {
+    if (songFilter.length > 0) {
+      const filtered = allSongs.filter(
+        (data) =>
+          data.artist.toLowerCase().includes(songFilter) ||
+          data.name.toLowerCase().includes(songFilter)
+      );
+      setFilteredSongs(filtered);
+    } else {
+      setFilteredSongs(null);
+    }
+  }, [songFilter]);
   return (
     <div className='w-full p-4 flex items-center justify-center flex-col'>
       <div className='w-full flex justify-center items-center gap-24'>
@@ -38,9 +51,14 @@ const DashboardSongs = () => {
          placeholder='Search for songs...'
          value={songFilter}
          onChange={(e) => setSongFilter(e.target.value)}
-         onBlur={() => {setIsFocus(false);} }
-         onFocus={() => setIsFocus(true) }
          />
+         {songFilter && (
+          <i
+            onClick={() => {
+              setSongFilter("");
+              setFilteredSongs(null);
+            }} />
+         )}
       </div>
 
       <div classname="relative w-full my-4 p-4 border border-gray-300 rounded-md">
@@ -53,7 +71,7 @@ const DashboardSongs = () => {
           </p>
         </div>
 
-        <SongContainer data={allSongs} />
+        <SongContainer data={filteredSongs ? filteredSongs : allSongs} />
 
       </div> 
     </div>

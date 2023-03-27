@@ -12,7 +12,7 @@ import { useStateValue } from "../context/StateProvider";
 const FilterButtons = ({filterData, flag}) => {
   const [filterName, setfilterName] = useState(null) 
   const [filterMenu, setfilterMenu] = useState(false) 
-  const [{ filterTerm }, dispatch] = useStateValue();
+  const [dispatch] = useStateValue();
 
   /**
    * Update filter button name and dispatches action to update filter term.

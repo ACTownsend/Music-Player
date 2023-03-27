@@ -10,7 +10,11 @@ const { default: mongoose } = require("mongoose");
  */
 app.use(cors({ origin: true }));
 app.use(express.json());
+ 
 
+app.get("/", (req,res) => {
+  return res.json("Test")
+})
 
 // Artist links
 const artistsRoute = require("./routes/artist");
@@ -40,4 +44,4 @@ mongoose.connection
  * Starts the server listening on port 4001.
  * Logs a message to the console when the server starts.
  */
-app.listen(4001, () => console.log("lisitening to port 4001"));
+app.listen(4001, () => console.log("listening to port 4001"));

@@ -10,7 +10,7 @@ import { useStateValue } from '../context/StateProvider';
  * @param {string} type - The type of the song.
  */
 const SongCard = ({data, index, type}) => {
-  const [{allSongs, songIndex, isSongPlaying}, dispatch] = useStateValue();
+  const [{songIndex, isSongPlaying}, dispatch] = useStateValue();
 
   /**
    * Adds the current song to the context.
@@ -55,10 +55,6 @@ const SongCard = ({data, index, type}) => {
                 </span>
             )}
         </p>
-        <div className='w-full absolute bottom-2 right-2 flex items-center justify-between px-4'>
-            <p 
-            className='text-base text-red-400 drop-shadow-md hover:text-red-600'>delete</p>
-        </div>
     </div>
   );
 };

@@ -7,11 +7,9 @@ import { getAllAlbums, getAllArtists, getAllSongs, saveNewAlbum, saveNewArtist, 
 import { actionType } from '../context/reducer' 
 import { useEffect } from 'react' 
 import {
-  getStorage,
   ref,
   getDownloadURL,
   uploadBytesResumable,
-  deleteObject,
 } from "firebase/storage" 
 import { storage } from "../config/firebase.config" 
 
@@ -116,6 +114,7 @@ const DashboardNewSong = () => {
       setartistName("")
       setisAudioLoading(false)
       setisImageLoading(false)
+      
       dispatch({type: actionType.SET_FILTER_TERM, filterTerm: null })
     }
   };

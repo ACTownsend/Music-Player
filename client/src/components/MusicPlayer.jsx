@@ -59,7 +59,7 @@ const MusicPlayer = () => {
       isSongPlaying : false,
     })
   }
-  const [{allSongs, songIndex, isSongPlaying}, dispatch] = useStateValue();
+  const [{allSongs, songIndex}, dispatch] = useStateValue();
   const [IsPlaylist, setIsPlaylist] = useState(false)
   return (
     <div className='w-full flex items-center gap-3'>
