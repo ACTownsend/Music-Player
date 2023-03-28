@@ -119,7 +119,7 @@ const DashboardNewSong = () => {
     }
   };
   return (
-    <div className='flex flex-col items- justify-center p-4 border border-gray-300 gap-4 rounded-md'>
+    <div className='flex flex-col items-center justify-center p-4 border border-gray-300 gap-4 rounded-md'>
       <input type="text" placeholder="Song name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={songName} onChange={(e) => setsongName(e.target.value)} />
       <input type="text" placeholder="Artist name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={artistName} onChange={(e) => setartistName(e.target.value)} />
       <input type="text" placeholder="Album name" className='w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent' value={albumName} onChange={(e) => setalbumName(e.target.value)} />
@@ -174,12 +174,12 @@ const DashboardNewSong = () => {
         </div>
 
 
-        <div className='flex items-center justify-center w-60 cursor-pointer p-4 '>
+        <div className='flex items-center justify-center w-60 cursor-pointer p-4 margin-bottom:20px '>
           {isImageLoading || isAudioLoading ? (
             <div></div>
           ) : (
                 <button
-                  className='px-8 py-2 w-full rounded-md text-white bg-red-600 hover:shadow-lg'
+                  className='px-8 py-2 w-full  rounded-md text-white bg-red-600 hover:shadow-lg '
                   onClick={saveSong}>
                   Save Song
                 </button>

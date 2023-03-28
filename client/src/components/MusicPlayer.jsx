@@ -81,7 +81,7 @@ const MusicPlayer = () => {
           <p className="text-textColor hover:text-headingColor text-3xl cursor-pointer"> Queue</p>
         </i>
 
-        <div className='flex-1'>
+        <div className='flex-1 '>
           <AudioPlayer
           src={allSongs[songIndex]?.songURL}
           onPlay={() => console.log("is playing")}

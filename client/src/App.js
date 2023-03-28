@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className='h-auto min-w-[680px] bg-primary flex justify-center items-center'>
         <Routes>
-          <Route path="/*" element={<Home />}/>
+          <Route path="/*" element={<Dashboard />}/>
           <Route path="/dashboard/*" element={<Dashboard />} />
         </Routes>
         {isSongPlaying && (

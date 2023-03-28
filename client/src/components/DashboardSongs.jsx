@@ -10,11 +10,11 @@ import SongCard  from './SongCard';
  * @function
  */
 const DashboardSongs = () => {
-  const [songFilter, setSongFilter] = useState("");
   const [isFocus, setIsFocus] = useState(false);
   const [{allSongs}, dispatch] = useStateValue(null);
   const [filteredSongs, setFilteredSongs] = useState(null);
-
+  const [songFilter, setSongFilter] = useState("");
+  
   useEffect(() => {
     // Fetches all songs when the component mounts.
     if(!allSongs) {
@@ -48,9 +48,9 @@ const DashboardSongs = () => {
         <input type="text"
          className={`w-52 px-4 py-2 border ${
            isFocus ? "bordergray-500 shadow-md" : "border-grey-300"} rounded-md bg-transparent outline-none duration-150 transition-all ease-in-out text-base text-textColor font-semibold `}
-         placeholder='Search for songs...'
+         placeholder='Search for Songs...'
          value={songFilter}
-         onChange={(e) => setSongFilter(e.target.value)}
+         onChange={(e) => setSongFilter(e.target.value.toLowerCase())}
          />
          {songFilter && (
           <i
