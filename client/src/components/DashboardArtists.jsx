@@ -7,6 +7,7 @@ import { useState } from 'react'
 
 /**
  * Renders a dashboard for the list of artists.
+ * @constructor
  * It fetches all artists from the database using the 'getAllArtists' API.
  */
 const DashboardArtists = () => {

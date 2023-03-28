@@ -5,6 +5,7 @@ import { useStateValue } from "../context/StateProvider";
 
 /**
  * Component that renders filter buttons to filter search results by category, artist or album.
+ * @constructor
  * @param {object} filterData - Data used to generate the filter buttons
  * @param {string} flag - Category, Artist, or Album 
  * @returns {JSX.Element} - Returns the filter buttons

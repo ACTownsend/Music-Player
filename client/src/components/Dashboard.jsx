@@ -9,6 +9,7 @@ import DashboardNewSong from './DashboardNewSong';
 
 /**
  * Dashboard component that represents a dashboard page in a music app.
+ * @constructor
  * @returns {JSX.Element} JSX element that renders the dashboard page.
  */
 const Dashboard = () => {

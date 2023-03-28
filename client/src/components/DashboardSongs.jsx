@@ -7,6 +7,7 @@ import SongCard  from './SongCard';
 
 /**
  * Component representing a dashboard for displaying all the songs.
+ * @constructor
  * @function
  */
 const DashboardSongs = () => {

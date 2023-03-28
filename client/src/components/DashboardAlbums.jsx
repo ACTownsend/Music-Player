@@ -7,6 +7,7 @@ import { useState } from 'react'
 
 /**
  * DashboardAlbums component that represents the Albums page on the dashboard.
+ * @constructor
  * @returns {JSX.Element} JSX element that renders the Albums page.
  */
 const DashboardAlbums = () => {

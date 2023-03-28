@@ -4,6 +4,7 @@ import { useStateValue } from '../context/StateProvider';
 
 /**
  * Represents a song card component.
+ * @constructor
  * @function
  * @param {Object} data - The data object containing song details.
  * @param {number} index - The index of the song in the list.

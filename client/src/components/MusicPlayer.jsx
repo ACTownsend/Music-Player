@@ -9,6 +9,7 @@ import { getAllSongs } from '../api';
 
 /**
  * Represents the music player component.
+ * @constructor
  * @function
  */
 const MusicPlayer = () => {
